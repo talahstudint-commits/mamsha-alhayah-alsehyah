@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>حساب BMI</title>
+
+<style>
+body{
+font-family:Tahoma;
+background:#eff6ff;
+padding:25px;
+}
+
+.box{
+max-width:650px;
+margin:auto;
+background:#fff;
+padding:30px;
+border-radius:22px;
+box-shadow:0 12px 25px rgba(0,0,0,.08);
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+margin-bottom:10px;
+}
+
+p{
+text-align:center;
+color:#64748b;
+margin-bottom:20px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+border:1px solid #dbeafe;
+border-radius:14px;
+font-size:15px;
+}
+
+button{
+width:100%;
+padding:14px;
+border:none;
+background:#2563eb;
+color:white;
+font-size:16px;
+font-weight:bold;
+border-radius:14px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1d4ed8;
+}
+
+.result{
+margin-top:14px;
+padding:14px;
+background:#dbeafe;
+border-radius:14px;
+text-align:center;
+font-weight:bold;
+}
+
+table{
+width:100%;
+margin-top:20px;
+border-collapse:collapse;
+overflow:hidden;
+border-radius:14px;
+}
+
+th,td{
+padding:12px;
+text-align:center;
+border-bottom:1px solid #e5e7eb;
+}
+
+th{
+background:#2563eb;
+color:white;
+}
+
+.back{
+display:block;
+margin-top:20px;
+text-align:center;
+text-decoration:none;
+background:#e2e8f0;
+padding:12px;
+border-radius:14px;
+color:#111827;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+
+<h1>حساب BMI</h1>
+<p>أدخل الوزن والطول لمعرفة مؤشر كتلة الجسم</p>
+
+<input type="number" id="weight" placeholder="الوزن بالكيلو">
+<input type="number" id="height" placeholder="الطول بالسنتيمتر">
+
+<button onclick="calcBMI()">احسب الآن</button>
+
+<div class="result" id="result">
+النتيجة ستظهر هنا
+</div>
+
+<table>
+<tr>
+<th>القيمة</th>
+<th>التصنيف</th>
+</tr>
+
+<tr>
+<td>أقل من 18.5</td>
+<td>نحيف</td>
+</tr>
+
+<tr>
+<td>18.5 - 24.9</td>
+<td>طبيعي</td>
+</tr>
+
+<tr>
+<td>25 - 29.9</td>
+<td>زيادة وزن</td>
+</tr>
+
+<tr>
+<td>30 فأكثر</td>
+<td>سمنة</td>
+</tr>
+</table>
+
+<a href="index.html" class="back">العودة للرئيسية</a>
+
+</div>
+
+<script>
+function calcBMI(){
+
+let weight = document.getElementById("weight").value;
+let height = document.getElementById("height").value / 100;
+
+if(weight && height){
+
+let bmi = (weight / (height * height)).toFixed(1);
+let status = "";
+
+if(bmi < 18.5){
+status = "نحيف";
+}
+else if(bmi < 25){
+status = "طبيعي";
+}
+else if(bmi < 30){
+status = "زيادة وزن";
+}
+else{
+status = "سمنة";
+}
+
+document.getElementById("result").innerHTML =
+"BMI = " + bmi + " | " + status;
+
+}
+
+}
+</script>
+
+</body>
+</html>
